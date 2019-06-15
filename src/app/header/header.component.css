@@ -1,0 +1,26 @@
+/* blue : #91B0D5 */
+/* lightblue : #BBD6E5 */
+
+.signOutBtn:hover {
+    cursor: pointer;
+}
+
+.navbar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 99 !important;
+}
+
+.navbar .nav-item .nav-link {
+	font-size: 18px;
+	font-weight: bold !important;
+}
+
+.loginBtn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 25px;
+}

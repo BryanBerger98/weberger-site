@@ -1,1 +1,125 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+
+html, body {
+    height: 100%;
+}
+
+.fs-10 {
+    font-size: 10px;
+}
+
+.fs-15 {
+    font-size: 15px;
+}
+
+.fs-20 {
+    font-size: 20px;
+}
+
+.fs-25 {
+    font-size: 25px;
+}
+
+.fs-30 {
+    font-size: 30px;
+}
+
+.fs-35 {
+    font-size: 35px;
+}
+
+.fs-40 {
+    font-size: 40px;
+}
+
+.fs-45 {
+    font-size: 45px;
+}
+
+.fs-50 {
+    font-size: 50px;
+}
+
+/* blue : #91B0D5 145, 176, 213*/
+/* lightblue : #BBD6E5 */
+
+.text-blue {
+    color: #91B0D5 !important;
+}
+
+.text-lightblue {
+    color: #BBD6E5 !important;
+}
+
+.bg-blue {
+    /* background-color: #91B0D5 !important; */
+    background-color: #0F7180 !important;
+}
+
+.bg-lightblue {
+    background-color: #BBD6E5 !important;
+}
+
+.deploySectionBtn {
+	width: 40px;
+    height: 40px;
+}
+
+
+@media (max-width: 575.98px) {
+	.homeHeader .logoHeader {
+		width: 50%;
+	}
+
+	.homeHeader h1 {
+		font-size: 30px;
+	}
+}
+
+@media (max-width: 767.98px) {
+	.homeHeader .logoHeader {
+		width: 50%;
+	}
+
+	.homeHeader h1 {
+		font-size: 30px;
+	}
+}
+
+@media (max-width: 575.98px) and (orientation: landscape){
+	.homeHeader .logoHeader {
+		width: 25%;
+	}
+
+	.homeHeader h1 {
+		font-size: 30px;
+	}
+}
+
+@media (max-width: 767.98px) and (orientation: landscape){
+	.homeHeader .logoHeader {
+		width: 25%;
+	}
+
+	.homeHeader h1 {
+		font-size: 30px;
+	}
+}
+
+@media (max-width: 991.98px) and (orientation: landscape) {
+	.homeHeader .logoHeader {
+		width: 25%;
+	}
+
+	.homeHeader h1 {
+		font-size: 30px;
+	}
+}
+
+@media (max-width: 992px) {
+	.navbar {
+		background-color: #343A40 !important;
+	}
+}

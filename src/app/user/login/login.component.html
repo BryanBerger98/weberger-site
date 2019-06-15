@@ -1,0 +1,18 @@
+<div class="row my-5">
+  <div class="col-md-6 mx-auto">
+    <h1 class="display-4">Connexion</h1>
+    <form [formGroup]="adminSignInForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Adresse email</label>
+        <input type="email" class="form-control" formControlName="email" id="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" class="form-control" formControlName="password" id="password">
+      </div>
+      <re-captcha (resolved)="resolved($event)" formControlName="recaptchaReactive" siteKey="6LezPHMUAAAAADl0zTH2jYYIcHa9jIrYXPuhWujT"></re-captcha>
+      <button class="btn btn-primary" type="submit" [disabled]="adminSignInForm.invalid">Connexion</button>
+    </form>
+    <p class="text-danger">{{ errorMessage }}</p>
+  </div>
+</div>

@@ -1,0 +1,153 @@
+<div class="d-flex">
+  <button type="button" (click)="onDeploySkillSection()" class="btn btn-primary rounded-circle mr-2 deploySectionBtn">
+      <i class="fas fa-chevron-right" *ngIf="!skillSectionDisplay"></i>
+      <i class="fas fa-chevron-down" *ngIf="skillSectionDisplay"></i>
+  </button>
+  <h2 class="font-weight-light mb-0">
+      <i class="far fa-check-square"></i> Compétences
+  </h2>
+  <button type="button" data-toggle="modal" data-target="#addskillSectionModal" (click)="onAddSkillGroup()" class="btn btn-info ml-auto"><i class="fas fa-plus"></i> Ajouter un groupe de compétences</button>
+</div>
+<hr class="bg-dark mt-1 mb-0">
+
+<div class="row py-4" *ngIf="skillSectionDisplay">
+  <div class="col-sm-12" *ngFor="let skillGroup of skillGroups; let i = index">
+    <div class="shadow p-3 my-3 rounded bg-light">
+      <div class="row">
+        <div class="col-sm-10">
+            <h3 class="font-weight-light text-info fs-25" cdkDragHandle>{{ skillGroup.title }}</h3>
+            <div class="row p-1" cdkDropList [id]="skillGroup.id" (cdkDropListDropped)="onSkillDrop($event, i)" [cdkDropListData]="skillGroup.skills" [cdkDropListConnectedTo]="skillGroupsIds">
+              <div class="col-sm-2" *ngFor="let skill of skillGroup.skills" cdkDrag>
+                <div class="shadow bg-white p-2 rounded h-100" (click)="openRemoveSkillModal(i, skill)">
+                  <div class="w-50 mx-auto">
+                    <img [src]="skill.photo" alt="Compétence photo" class="w-100">
+                  </div>
+                  <p class="lead text-center fs-15 mb-0">{{ skill.title }}</p>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-2 d-flex">
+          <button class="btn btn-outline-primary my-auto ml-auto" type="button" (click)="onAddSkillToSkillGroup(i)"><i class="fas fa-plus"></i></button>
+          <button class="btn btn-outline-danger my-auto ml-2" type="button" (click)="openRemoveSkillGroupModal(i)"><i class="far fa-trash-alt"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addskillSectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-info" id="exampleModalCenterTitle">Définir un type de compétences</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="adminSkillGroupForm" (ngSubmit)="onSaveSkillGroup()">
+          <!-- <input type="text" formControlName="id" hidden> -->
+          <div class="form-group">
+            <input type="text" placeholder="Titre" formControlName="title" class="form-control">
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <button type="button" class="btn btn-outline-secondary w-100" data-dismiss="modal">Annuler</button>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="btn btn-outline-info w-100">Enregistrer</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addSkillModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-info" id="exampleModalCenterTitle">Définir un type de compétences</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="adminSkillForm" (ngSubmit)="onSaveSkill()">
+          <input type="text" formControlName="id" hidden>
+          <div class="form-group">
+            <input type="text" placeholder="Titre" formControlName="title" class="form-control">
+          </div>
+          <div class="input-group mb-3">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" (change)="detectFiles($event)" id="inputGroupFile02">
+              <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Ajouer une image</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <button type="button" class="btn btn-outline-secondary w-100" data-dismiss="modal">Annuler</button>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="btn btn-outline-info w-100">Enregistrer</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="removeSkillGroupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="exampleModalCenterTitle">Supprimer ce groupe de compétences ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="adminDeleteSkillGroupForm" (ngSubmit)="onDeleteSkillGroup()">
+          <input type="text" formControlName="id" hidden>
+          <div class="row">
+            <div class="col-6">
+              <button type="button" class="btn btn-outline-secondary w-100" data-dismiss="modal">Annuler</button>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="btn btn-outline-danger w-100">Supprimer</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="removeSkillModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="exampleModalCenterTitle">Supprimer la compétence ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="adminDeleteSkillForm" (ngSubmit)="onDeleteSkill()">
+          <input type="text" formControlName="id" hidden>
+          <div class="row">
+            <div class="col-6">
+              <button type="button" class="btn btn-outline-secondary w-100" data-dismiss="modal">Annuler</button>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="btn btn-outline-danger w-100">Supprimer</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
