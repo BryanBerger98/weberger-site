@@ -7,11 +7,10 @@ import * as firebase from 'firebase';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'weberger';
 
   constructor() {
     // Your web app's Firebase configuration
-    var firebaseConfig = {
+    const firebaseConfig = {
       apiKey: "AIzaSyDnk09jgDPuDcJIMdp4XTy2VlciytmLulo",
       authDomain: "weberger-app.firebaseapp.com",
       databaseURL: "https://weberger-app.firebaseio.com",

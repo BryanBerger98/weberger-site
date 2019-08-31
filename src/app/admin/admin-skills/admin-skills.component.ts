@@ -30,6 +30,7 @@ export class AdminSkillsComponent implements OnInit, OnDestroy {
   adminSkillForm: FormGroup;
   adminDeleteSkillGroupForm: FormGroup;
   adminDeleteSkillForm: FormGroup;
+  adminUpdateSkillGroupTitle: FormGroup;
 
   fileIsUploading = false;
   fileUrl: string;
@@ -47,6 +48,7 @@ export class AdminSkillsComponent implements OnInit, OnDestroy {
     this.initSkillForm();
     this.initAdminDeleteSkillGroupForm();
     this.initAdminDeleteSkillForm();
+    this.initAdminUpdateSkillGroupTitle();
     this.skillGroupsSubscription = this.adminSkillsService.skillGroupsSubject.subscribe(
       (skillGroups: AdminSkillGroup[]) => {
         this.skillGroups = skillGroups;
@@ -58,7 +60,7 @@ export class AdminSkillsComponent implements OnInit, OnDestroy {
       (data: any[]) => {
         this.skillGroupsIds = data;
       }
-    )
+    );
   }
 
   initSkillGroupForm() {
@@ -83,6 +85,13 @@ export class AdminSkillsComponent implements OnInit, OnDestroy {
   initAdminDeleteSkillForm() {
     this.adminDeleteSkillForm = this.formBuilder.group({
       id: ''
+    });
+  }
+
+  initAdminUpdateSkillGroupTitle() {
+    this.adminUpdateSkillGroupTitle = this.formBuilder.group({
+      id: '',
+      title : ''
     });
   }
 
@@ -179,6 +188,24 @@ export class AdminSkillsComponent implements OnInit, OnDestroy {
     this.adminSkillsService.removeSkill(id, this.skilltoRemove);
     $('#removeSkillModal').modal('hide');
     this.adminDeleteSkillForm.reset();
+  }
+
+  onDropSkillGroup(event: CdkDragDrop<AdminSkillGroup[]>) {
+    moveItemInArray(this.skillGroups, event.previousIndex, event.currentIndex);
+    this.adminSkillsService.saveNewSkillGroupsArray(this.skillGroups);
+  }
+
+  onOpenUpdateSkillGroupTitleModal(i) {
+    $('#updateSkillGroupTitleModal').modal('show');
+    this.adminUpdateSkillGroupTitle.get('id').setValue(i);
+  }
+
+  onUpdateSkillGroupTitle() {
+    const id = this.adminUpdateSkillGroupTitle.get('id').value;
+    const title = this.adminUpdateSkillGroupTitle.get('title').value;
+    this.adminSkillsService.updateSkillGroupTitle(id, title);
+    $('#updateSkillGroupTitleModal').modal('hide');
+    this.adminUpdateSkillGroupTitle.reset();
   }
 
   onDeploySkillSection() {

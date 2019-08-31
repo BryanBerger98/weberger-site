@@ -1,0 +1,22 @@
+<section class="shadow bg-light" id="skillsSection" *ngIf="adminSkillGroups">
+    <div class="container py-5">
+      <h2 class="display-4 text-center text-info mb-5">Compétences</h2>
+      <div class="row mb-5">
+
+        <div class="col-sm-12 col-md-6 my-3" *ngFor="let skillGroup of adminSkillGroups">
+          <div class="shadow bg-white rounded p-4 h-100">
+            <h3 class="font-weight-light text-center text-info mb-4" *ngIf="skillGroup.title">{{ skillGroup.title }}</h3>
+            <div class="row m5-4">
+              <div class="col-sm-6 col-md-6 col-lg-4 my-2" *ngFor="let skill of skillGroup.skills">
+                <div class="skillPhoto mx-auto w-50" *ngIf="skill.photo">
+                  <img [src]="skill.photo" class="w-100" [alt]="skill.title">
+                </div>
+                <p class="lead text-center" *ngIf="skill.title">{{ skill.title }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>

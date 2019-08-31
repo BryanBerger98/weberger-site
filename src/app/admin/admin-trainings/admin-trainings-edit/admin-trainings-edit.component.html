@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home">Accueil</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container py-5">
+  <div class="d-flex">
+    <button class="btn btn-outline-info my-auto" [routerLink]="['/admin/dashboard']">Retour</button>
+    <h1 class="font-weight-light m-0 ml-3">Editer une formation</h1>
+  </div>
+  <hr class="bg-dark mt-1 mb-0">
+
+  <form class="my-5" [formGroup]="editTrainingForm" (ngSubmit)="onSaveTraining()">
+    <div class="form-row">
+      <div class="col-md-6 col-sm-12">
+        <div class="w-75 ml-auto mb-3 rounded">
+          <label for="trainingImage" class="w-100 rounded position-relative trainingImageLabel">
+            <img *ngIf="trainingThumbnail && trainingThumbnail !==''" [src]="trainingThumbnail" alt="Default image" class="w-100 rounded">
+            <img *ngIf="!trainingThumbnail || trainingThumbnail ===''" src="../../../../assets/defaults/default_image.jpg" alt="Default image" class="w-100 rounded">
+            <div class="position-absolute hoverTrainingImage">
+              <p class="font-weight-light m-auto">Modifier la miniature</p>
+            </div>
+            <div class="position-absolute isLoading" *ngIf="fileIsLoading">
+              <div class="spinner-border text-info m-auto" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </label>
+          <input type="file" id="trainingImage" hidden (change)="detectFile($event)">
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="form-group w-75">
+          <input type="text" formControlName="title" placeholder="Titre" class="form-control">
+        </div>
+        <div class="input-group mb-3 w-75">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Catégorie</label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01" formControlName="category">
+            <option *ngFor="let category of categories">{{ category.title }}</option>
+          </select>
+        </div>
+        <div class="input-group mb-3 w-75">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Niveau</label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01" formControlName="level">
+            <option>Débutant</option>
+            <option>Intermédiaire</option>
+            <option>Avancé</option>
+            <option>Expert</option>
+          </select>
+        </div>
+        <div class="form-group w-75">
+          <label for="videoTime">Temps de vidéos</label>
+          <input type="time" id="videoTime" formControlName="videoTime" class="form-control">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <textarea class="form-control w-75 mx-auto" placeholder="Description" formControlName="description" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+      <input type="url" placeholder="Lien de la formation" formControlName="url" class="form-control w-75 mx-auto">
+    </div>
+    <div class="form-group">
+      <input type="text" placeholder="tags" formControlName="tags" class="form-control w-75 mx-auto">
+    </div>
+    <div class="d-flex">
+      <div class="custom-control custom-switch mx-auto">
+        <input type="checkbox" class="custom-control-input" id="customSwitch1" formControlName="inProduction">
+        <label class="custom-control-label" for="customSwitch1">En cours de réalisation</label>
+      </div>
+    </div>
+    <div class="text-center mt-3">
+      <button class="btn btn-info" type="submit">Enregistrer</button>
+    </div>
+  </form>
+
+</div>

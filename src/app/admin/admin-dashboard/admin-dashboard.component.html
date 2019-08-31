@@ -1,12 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mx-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/home">Accueil</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<header class="bg-dark">
+  <app-header></app-header>
+</header>
 <div class="container mt-5">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
@@ -15,9 +9,9 @@
     <li class="nav-item">
       <a class="nav-link" id="blog-tab" data-toggle="tab" href="#blog" role="tab" aria-controls="blog" aria-selected="false">Blog</a>
     </li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" id="videos-tab" data-toggle="tab" href="#videos" role="tab" aria-controls="videos" aria-selected="false">Vidéos</a>
-    </li>
+    </li> -->
     <li class="nav-item">
       <a class="nav-link" id="trainings-tab" data-toggle="tab" href="#trainings" role="tab" aria-controls="trainings" aria-selected="false">Formations</a>
     </li>
@@ -45,10 +39,21 @@
             <app-admin-skills></app-admin-skills>
           </div>
         </div>
+        <div class="col-sm-12">
+          <div class="shadow p-5 mb-4">
+            <app-admin-productions></app-admin-productions>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="tab-pane fade" id="blog" role="tabpanel" aria-labelledby="blog-tab">...</div>
-    <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab">...</div>
-    <div class="tab-pane fade" id="trainings" role="tabpanel" aria-labelledby="trainings-tab">...</div>
+    <div class="tab-pane fade" id="blog" role="tabpanel" aria-labelledby="blog-tab">
+      <app-admin-blog></app-admin-blog>
+    </div>
+    <!-- <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab">
+      ...
+    </div> -->
+    <div class="tab-pane fade" id="trainings" role="tabpanel" aria-labelledby="trainings-tab">
+      <app-admin-trainings></app-admin-trainings>
+    </div>
   </div>
 </div>

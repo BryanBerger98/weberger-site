@@ -1,0 +1,95 @@
+<div class="row py-4">
+  <div class="col-sm-12">
+    <div class="shadow p-5 mb-4">
+      <div class="d-flex">
+        <h2 class="font-weight-light mb-0">
+          <i class="fas fa-sliders-h"></i> Catégories
+        </h2>
+        <form class="ml-auto d-flex" [formGroup]="articleCategoryForm" (ngSubmit)="onSaveCategory()">
+            <input type="text" placeholder="Ajouter une catégorie" formControlName="title" class="form-control">
+            <button class="btn btn-outline-info ml-1" type="submit" [disabled]="articleCategoryForm.invalid"><i class="fas fa-plus"></i></button>
+        </form>
+      </div>
+      <hr class="bg-dark mt-1 mb-0">
+      <div class="d-flex py-3 flex-wrap">
+        <div *ngFor="let category of categories" class="shadow bg-light p-3 m-2 align-middle">
+          {{ category.title }}
+          <i class="fas fa-times text-danger ml-2" (click)="onRemoveCategory(category)"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="shadow p-5 mb-4">
+      <div class="d-flex">
+        <h2 class="font-weight-light mb-0">
+          <i class="far fa-newspaper"></i> Articles
+        </h2>
+        <form class="ml-auto d-flex">
+            <input type="search" placeholder="Rechercher" class="form-control">
+            <button class="btn btn-outline-info ml-1" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+      <hr class="bg-dark mt-1 mb-0">
+
+      <div class="d-flex my-3">
+        <button class="btn btn-info mx-auto" (click)="onGoToEditArticle()"><i class="fas fa-plus"></i> Ajouter un article</button>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" class="text-center">Miniature</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Catégorie</th>
+            <th>Date</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let article of articles; let i = index">
+            <th scope="row" class="align-middle">{{ i }}</th>
+            <td class="article-img align-middle">
+              <img [src]="article.thumbnail" class="w-100" alt="">
+            </td>
+            <td class="align-middle">{{ article.title }}</td>
+            <td class="align-middle">{{ article.category }}</td>
+            <td class="align-middle">{{ article.date | date: 'dd/MM/y' }}</td>
+            <td class="d-flex justify-content-around align-items-center">
+              <button class="btn btn-outline-primary" (click)="onEditArticle(i)"><i class="far fa-edit"></i></button>
+              <button class="btn btn-outline-danger" (click)="onDeleteArticle(i)"><i class="far fa-trash-alt"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="removeArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="exampleModalCenterTitle">Supprimer cet article ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="articleDeleteForm" (ngSubmit)="onConfirmDeleteArticle()">
+          <input type="text" formControlName="id" hidden>
+          <div class="row">
+            <div class="col-6">
+              <button type="button" class="btn btn-outline-secondary w-100" data-dismiss="modal">Annuler</button>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="btn btn-outline-danger w-100">Supprimer</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   adminSignInForm: FormGroup;
   errorMessage: string;
-  validateCaptcha: boolean = false;
+  validateCaptcha = false;
 
   constructor(private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
@@ -43,8 +43,8 @@ export class LoginComponent implements OnInit {
     if (this.validateCaptcha === true) {
       this.authenticationService.signInUser(email, password).then(
         () => {
-          // this.router.navigate(['/admin', 'dashboard']);
-          console.log('Logged in')
+          this.router.navigate(['/admin', 'dashboard']);
+          console.log('Logged in');
         },
         (error) => {
           this.errorMessage = error;

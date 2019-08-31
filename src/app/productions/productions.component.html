@@ -1,0 +1,36 @@
+<header class="bg-dark position-relative">
+  <div class="logo position-absolute">
+    <a [routerLink]="['/']" class="w-100 h-100">
+      <img src="../../../assets/logo2.png" alt="Logo WeBerger" class="w-100">
+    </a>
+  </div>
+  <app-header></app-header>
+</header>
+
+<section class="py-5" id="productionsSection" *ngIf="adminProductions">
+  <div class="container py-5">
+    <h2 class="display-4 text-center text-info mb-5">Productions</h2>
+    <div class="row">
+
+      <div class="col-sm-12 col-md-6 my-3" *ngFor="let production of adminProductions; let i = index">
+        <div class="production rounded position-relative">
+          <div *ngFor="let image of production.photos; let first = first">
+            <img [src]="image" *ngIf="first" class="w-100 rounded shadow" [alt]="production.title">
+          </div>
+          <div class="position-absolute rounded hoverImageProduction">
+            <div class="m-auto text-center">
+              <h3 class=font-weight-normal>{{ production.title }}</h3>
+              <h4 class="font-weight-normal">{{ production.category }}</h4>
+              <a class="text-info productionDetails" [routerLink]="['/productions', i]" >Détails</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="shadow py-5 bg-blue">
+  <app-home-footer></app-home-footer>
+</footer>

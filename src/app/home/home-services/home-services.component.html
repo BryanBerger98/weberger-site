@@ -1,0 +1,44 @@
+<section class="shadow py-5" id="servicesSection" *ngIf="adminServices">
+  <div class="container py-5">
+    <h2 class="display-4 text-light text-center mb-5">Services</h2>
+    <div class="row my-5">
+      <div class="col-sm-12 col-md-6 col-lg-4 mx-auto my-2" *ngFor="let service of adminServices">
+        <div class="bg-light shadow p-4 rounded h-100">
+          <h3 class="font-weight-light text-center text-info" *ngIf="service.title">{{ service.title }}</h3>
+          <div class="servicePhoto w-50 mx-auto">
+            <!-- <img src="../../assets/responsive-design.png" class="w-100" alt="Responsive Design"> -->
+            <img [src]="service.photo" [alt]="service.title" class="w-100">
+          </div>
+          <p class="lead text-center" *ngIf="service.description">{{ service.description }}</p>
+        </div>
+      </div>
+      <!-- <div class="col-sm-12 col-md-6 col-lg-4 mx-auto my-2">
+        <div class="bg-light shadow p-4 rounded h-100">
+          <h3 class="font-weight-light text-center text-info">Responsive design</h3>
+          <div class="servicePhoto w-50 mx-auto">
+            <img src="../../assets/responsive-design.png" class="w-100" alt="Responsive Design">
+          </div>
+          <p class="lead text-center">Sites et applications multi-plateformes et adaptatives</p>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-4 mx-auto my-2">
+        <div class="bg-light shadow p-4 rounded h-100">
+          <h3 class="font-weight-light text-center text-info">Projets</h3>
+          <div class="servicePhoto w-50 mx-auto">
+            <img src="../../assets/Multiple_WIndows-512.png" class="w-100" alt="Projets">
+          </div>
+          <p class="lead text-center">Site vitrine, site marchand, application web/mobile</p>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-4 mx-auto my-2">
+        <div class="bg-light shadow p-4 rounded h-100">
+          <h3 class="font-weight-light text-center text-info">Formation/Consulting</h3>
+          <div class="servicePhoto w-50 mx-auto">
+            <img src="../../assets/training_512.png" class="w-100" alt="Formation Consulting">
+          </div>
+          <p class="lead text-center">Formations, Coaching, Consulting en développement & référencement Web</p>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>

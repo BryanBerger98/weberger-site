@@ -1,0 +1,18 @@
+#productionDescription {
+    resize: none;
+}
+
+.deleteTechnoAdded {
+    cursor: pointer;
+}
+
+.deletePhotoAdded {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.product-img {
+    width: 15%;
+}

@@ -1,0 +1,42 @@
+<header class="bg-dark position-relative">
+  <div class="logo position-absolute">
+    <a [routerLink]="['/']" class="w-100 h-100">
+      <img src="../../../assets/logo2.png" alt="Logo WeBerger" class="w-100">
+    </a>
+  </div>
+  <app-header></app-header>
+</header>
+
+<div class="bg-light">
+  <div class="container py-5">
+    <h1 class="display-4 text-info text-center">Formations</h1>
+
+    <p class="text-center fs-25 font-weight-light">Découvrez les formations vidéo mises à disposition par WeBerger pour vous permettre de monter en compétences !</p>
+
+    <div class="row py-5">
+      <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let training of trainings">
+        <div class="shadow bg-white rounded h-100 position-relative">
+          <div>
+            <img *ngIf="training.thumbnail && training.thumbnail !== ''" [src]="training.thumbnail" alt="Miniature" class="w-100 rounded-top">
+          </div>
+          <div class="p-3">
+            <h3 class="font-weight-normal fs-20 mb-3">{{ training.title }}</h3>
+            <p class="m-0">Niveau : {{ training.level }}</p>
+            <p class="m-0">Temps de vidéo : {{ training.videoTime }}</p>
+          </div>
+          <div class="pb-3 px-3">
+            <a *ngIf="!training.inProduction" class="btn btn-outline-info text-info w-100 moreInfoBtn" target="_blank" [href]="training.url">Plus d'infos</a>
+          </div>
+          <div *ngIf="training.inProduction" class="position-absolute inProduction d-flex">
+            <p class="text-dark font-weight-bold m-auto fs-30 text-center">En cours de réalisation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="shadow py-5 bg-blue">
+  <app-home-footer></app-home-footer>
+</footer>

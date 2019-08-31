@@ -26,8 +26,18 @@ export class AdminSkillsService {
     firebase.database().ref('/skillGroups/' + id).set(skillGroup);
   }
 
+  saveNewSkillGroupsArray(skillGroups: AdminSkillGroup[]) {
+    firebase.database().ref('/skillGroups').set(skillGroups);
+  }
+
   updateSkillGroups(skillGroups: AdminSkillGroup[]) {
     firebase.database().ref('/skillGroups').set(skillGroups);
+  }
+
+  updateSkillGroupTitle(id, title) {
+    firebase.database().ref('/skillGroups/' + id).update({
+      title: title
+    })
   }
 
   getSkillGroupsIds() {

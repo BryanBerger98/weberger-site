@@ -1,0 +1,51 @@
+<div class="container pt-5">
+    <h2 class="display-4 text-light mb-0">WeBerger</h2>
+    <p class="lead text-light fs-25">Développeur de sites et applications web sur-mesure</p>
+    <!-- <hr class="bg-light"> -->
+    <div class="row">
+
+      <div class="col-sm-12 shadow bg-light p-5 rounded">
+        <div class="row">
+
+          <div class="col-sm-12 col-md-6 col-lg-3 my-3">
+            <h3 class="font-weight-normal text-info">Navigation</h3>
+            <nav class="nav flex-column">
+              <a class="nav-link text-dark" [routerLink]="['/']">Accueil</a>
+              <a class="nav-link text-dark" [routerLink]="['/']">Blog</a>
+              <!-- <a class="nav-link text-dark" [routerLink]="['/']">Vidéos</a> -->
+              <a class="nav-link text-dark" [routerLink]="['/']">Formations</a>
+              <!-- <a class="nav-link text-dark" [routerLink]="['/']">Forum</a> -->
+            </nav>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-5 my-3" *ngIf="adminContact">
+            <h3 class="font-weight-normal text-info">Contactez-moi !</h3>
+            <p class="lead">Je vous ferai une offre sur mesures adaptée à vos besoins !</p>
+            <p *ngIf="adminContact.email && adminContact.email !== ''"><i class="far fa-envelope"></i> {{ adminContact.email }}</p>
+            <p *ngIf="adminContact.phone && adminContact.phone !== ''"><i class="fas fa-phone"></i> {{ adminContact.phone }}</p>
+            <p *ngIf="adminContact.address && adminContact.address !== ''"><i class="fas fa-map-marker-alt"></i> {{ adminContact.address }}, {{ adminContact.zip }} {{ adminContact.city }} - {{ adminContact.country }}</p>
+          </div>
+
+          <div class="col-sm-12 col-md-12 col-lg-4 my-3" *ngIf="adminContact">
+            <h3 class="font-weight-normal text-info">Restez informés !</h3>
+            <ul class="social-network social-circle">
+              <li *ngIf="adminContact.linkedInLink && adminContact.linkedInLink !==''"><a [href]="adminContact.linkedInLink" class="icoLinkedin" target="_blank" title="Linkedin"><i class="fab fa-linkedin fs-25"></i></a></li>
+              <li *ngIf="adminContact.facebookLink && adminContact.facebookLink !==''"><a [href]="adminContact.facebookLink" class="icoFacebook" target="_blank" title="Facebook"><i class="fab fa-facebook-square fs-25"></i></a></li>
+              <li *ngIf="adminContact.instagramLink && adminContact.instagramLink !==''"><a [href]="adminContact.instagramLink" class="icoInstagram" target="_blank" title="Instagram"><i class="fab fa-instagram fs-25"></i></a></li>
+              <li *ngIf="adminContact.githubLink && adminContact.githubLink !==''"><a [href]="adminContact.githubLink" class="icoGitHub" target="_blank" title="GitHub"><i class="fab fa-github fs-25"></i></a></li>
+              <li *ngIf="adminContact.twitterLink && adminContact.twitterLink !==''"><a [href]="adminContact.twitterLink" class="icoTwitter" target="_blank" title="Twitter"><i class="fab fa-twitter fs-25"></i></a></li>
+              <li *ngIf="adminContact.youtubeLink && adminContact.youtubeLink !==''"><a [href]="adminContact.youtubeLink" class="icoYoutube" target="_blank" title="Youtube"><i class="fab fa-youtube fs-25"></i></a></li>
+            </ul>
+            <br>
+            <a href="http://eepurl.com/gjDLPv" class="btn btn-outline-dark mt-2" target="_blank"><i class="far fa-envelope"></i> S'inscrire à la NewsLetter</a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center pt-5">
+      <small class="text-light">© WeBerger 2019 - <a [routerLink]="['/terms']" class="text-light">Mentions légales</a></small>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<section class="pb-5 bg-light" id="ownerSection" *ngIf="adminProfile">
+  <div class="container py-5">
+    <h2 class="display-4 text-info my-5 text-center">{{ adminProfile.firstname }} {{ adminProfile.lastname }}</h2>
+    <div class="row pb-5">
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="photo m-auto">
+          <img *ngIf="!adminProfile.photo || adminProfile.photo === ''" src="../../assets/bryan.jpg" class="w-100 rounded shadow" alt="Bryan BERGER">
+          <img *ngIf="adminProfile.photo && adminProfile.photo !== ''" [src]="adminProfile.photo" class="w-100 rounded shadow" alt="Bryan BERGER">
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-8">
+        <div class="p-4 bg-light rounded shadow" *ngIf="adminContact">
+          <h3 *ngIf="adminProfile.job && adminProfile.job !=''" class="text-info font-weight-normal">{{ adminProfile.job }}</h3>
+          <p *ngIf="adminProfile.description && adminProfile.description !=''">{{ adminProfile.description }}</p>
+          <p *ngIf="adminContact.email && adminContact.email !==''" class="text-info font-weight-bold"><i class="far fa-envelope"></i> {{ adminContact.email }}</p>
+          <p *ngIf="adminContact.phone && adminContact.phone !==''" class="text-info font-weight-bold"><i class="fas fa-phone"></i> {{ adminContact.phone }}</p>
+          <p *ngIf="adminContact.address && adminContact.address !== ''"><i class="fas fa-map-marker-alt"></i> {{ adminContact.address }}, {{ adminContact.zip }} {{ adminContact.city }} - {{ adminContact.country }}</p>
+          <ul class="social-network social-circle">
+            <li *ngIf="adminContact.linkedInLink && adminContact.linkedInLink !==''"><a [href]="adminContact.linkedInLink" class="icoLinkedin" target="_blank" title="Linkedin"><i class="fab fa-linkedin fs-25"></i></a></li>
+            <li *ngIf="adminContact.facebookLink && adminContact.facebookLink !==''"><a [href]="adminContact.facebookLink" class="icoFacebook" target="_blank" title="Facebook"><i class="fab fa-facebook-square fs-25"></i></a></li>
+            <li *ngIf="adminContact.instagramLink && adminContact.instagramLink !==''"><a [href]="adminContact.instagramLink" class="icoInstagram" target="_blank" title="Instagram"><i class="fab fa-instagram fs-25"></i></a></li>
+            <li *ngIf="adminContact.githubLink && adminContact.githubLink !==''"><a [href]="adminContact.githubLink" class="icoGitHub" target="_blank" title="GitHub"><i class="fab fa-github fs-25"></i></a></li>
+            <li *ngIf="adminContact.twitterLink && adminContact.twitterLink !==''"><a [href]="adminContact.twitterLink" class="icoTwitter" target="_blank" title="Twitter"><i class="fab fa-twitter fs-25"></i></a></li>
+            <li *ngIf="adminContact.youtubeLink && adminContact.youtubeLink !==''"><a [href]="adminContact.youtubeLink" class="icoYoutube" target="_blank" title="Youtube"><i class="fab fa-youtube fs-25"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

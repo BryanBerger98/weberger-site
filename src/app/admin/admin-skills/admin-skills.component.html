@@ -10,12 +10,12 @@
 </div>
 <hr class="bg-dark mt-1 mb-0">
 
-<div class="row py-4" *ngIf="skillSectionDisplay">
-  <div class="col-sm-12" *ngFor="let skillGroup of skillGroups; let i = index">
+<div class="row py-4" *ngIf="skillSectionDisplay" cdkDropList (cdkDropListDropped)="onDropSkillGroup($event)" [cdkDropListData]="skillGroups">
+  <div class="col-sm-12" *ngFor="let skillGroup of skillGroups; let i = index" cdkDrag>
     <div class="shadow p-3 my-3 rounded bg-light">
       <div class="row">
         <div class="col-sm-10">
-            <h3 class="font-weight-light text-info fs-25" cdkDragHandle>{{ skillGroup.title }}</h3>
+            <h3 class="font-weight-light text-info fs-25 d-flex" cdkDragHandle>{{ skillGroup.title }} <span class="fs-15 text-primary my-auto ml-2 editSkillGroupTitle" (click)="onOpenUpdateSkillGroupTitleModal(i)"><i class="fas fa-pen"></i></span></h3>
             <div class="row p-1" cdkDropList [id]="skillGroup.id" (cdkDropListDropped)="onSkillDrop($event, i)" [cdkDropListData]="skillGroup.skills" [cdkDropListConnectedTo]="skillGroupsIds">
               <div class="col-sm-2" *ngFor="let skill of skillGroup.skills" cdkDrag>
                 <div class="shadow bg-white p-2 rounded h-100" (click)="openRemoveSkillModal(i, skill)">
@@ -69,7 +69,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-info" id="exampleModalCenterTitle">Définir un type de compétences</h5>
+        <h5 class="modal-title text-info" id="exampleModalCenterTitle">Définir une compétences</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -144,6 +144,35 @@
             </div>
             <div class="col-6">
               <button type="submit" class="btn btn-outline-danger w-100">Supprimer</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updateSkillGroupTitleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-info" id="exampleModalCenterTitle">Titre du groupe</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="adminUpdateSkillGroupTitle" (ngSubmit)="onUpdateSkillGroupTitle()">
+          <input type="text" formControlName="id" hidden>
+          <div class="form-group">
+            <input type="text" placeholder="Titre" formControlName="title" class="form-control">
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <button type="button" class="btn btn-outline-secondary w-100" data-dismiss="modal">Annuler</button>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="btn btn-outline-info w-100">Enregistrer</button>
             </div>
           </div>
         </form>
