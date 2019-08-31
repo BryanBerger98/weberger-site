@@ -7,7 +7,7 @@ import * as firebase from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate{
+export class AuthGuardService implements CanActivate {
   path;
   route;
 
