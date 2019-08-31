@@ -24,7 +24,7 @@ export class AdminSkillsComponent implements OnInit, OnDestroy {
   // skillsSubscription: Subscription;
   // addNewSkill: boolean = false;
 
-  skillSectionDisplay: boolean = false;
+  skillSectionDisplay = false;
 
   adminSkillGroupForm: FormGroup;
   adminSkillForm: FormGroup;
