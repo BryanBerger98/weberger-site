@@ -28,9 +28,6 @@ header {
 	bottom: 0;
 	right: 0;
 	z-index: 97 !important;
-	/*background-color: rgba(187, 214, 229, 0.7);*/
-	/*background: linear-gradient(#fff, #17A2B8);*/
-	/*background: linear-gradient(#17A2B8, #fff);*/
 	background: linear-gradient(#000, #17A2B8);
 	opacity: 0.7;
 }

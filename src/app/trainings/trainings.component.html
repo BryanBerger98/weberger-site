@@ -14,7 +14,7 @@
     <p class="text-center fs-25 font-weight-light">Découvrez les formations vidéo mises à disposition par WeBerger pour vous permettre de monter en compétences !</p>
 
     <div class="row py-5">
-      <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let training of trainings">
+      <div class="col-sm-12 col-md-6 col-lg-4 my-2" *ngFor="let training of trainings">
         <div class="shadow bg-white rounded h-100 position-relative">
           <div>
             <img *ngIf="training.thumbnail && training.thumbnail !== ''" [src]="training.thumbnail" alt="Miniature" class="w-100 rounded-top">
